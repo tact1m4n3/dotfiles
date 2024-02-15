@@ -6,6 +6,11 @@ return {
 		require("catppuccin").setup({
 			flavour = "mocha",
 			transparent_background = true,
+			custom_highlights = function(colors)
+				return {
+					EndOfBuffer = { fg = colors.surface1 },
+				}
+			end,
 			integrations = {
 				cmp = true,
 				gitsigns = true,

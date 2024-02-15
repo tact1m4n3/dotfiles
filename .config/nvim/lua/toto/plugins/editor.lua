@@ -160,12 +160,4 @@ return {
 			use_diagnostic_signs = true,
 		},
 	},
-	{
-		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		keys = {
-			{ "<leader>t", "<cmd>TodoTrouble<cr>" },
-		},
-		opts = {},
-	},
 }

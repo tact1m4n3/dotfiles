@@ -12,6 +12,7 @@ return {
 			},
 			indent = {
 				enable = true,
+				disable = { "rust" },
 			},
 			ensure_installed = {
 				"bash",

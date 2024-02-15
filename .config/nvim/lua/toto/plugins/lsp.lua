@@ -146,6 +146,7 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"rust_analyzer",
+					"taplo",
 					"wgsl_analyzer",
 				},
 				automatic_installation = true,
