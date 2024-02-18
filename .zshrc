@@ -1,8 +1,12 @@
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# TODO: maybe figure out another way to do this
+if [ "$(uname -s)" == "Darwin" ]; then
+    export PATH=/opt/homebrew/bin:$PATH
+fi
 
 export ZSH="$HOME/.oh-my-zsh"
+export EDITOR=nvim
 
-ZSH_THEME=""
+ZSH_THEME="robbyrussell"
 
 plugins=(
     git
@@ -13,21 +17,12 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-autoload -U promptinit; promptinit
-prompt pure
-
 alias ll="ls -l"
 alias la="ls -la"
 
-alias cat="bat -pp --theme Catppuccin-mocha"
+alias cat="bat -pp"
 alias vim="nvim"
-
-. "$HOME/.cargo/env"
 
 eval "$(zoxide init --cmd cd zsh)"
 
-# fzf catppuccin theme
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+. "$HOME/.cargo/env"

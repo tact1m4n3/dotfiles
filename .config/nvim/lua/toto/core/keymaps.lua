@@ -17,7 +17,6 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["+d]])
 vim.keymap.set({ "n", "v" }, "<leader>p", [["+p]])
 vim.keymap.set({ "n", "v" }, "<leader>P", [["+P]])
 
-vim.keymap.set("n", "<leader>sx", ":close<CR>")
 vim.keymap.set("n", "<leader>sh", ":split<CR>")
 vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
 
