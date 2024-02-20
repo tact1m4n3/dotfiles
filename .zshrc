@@ -23,6 +23,6 @@ alias la="ls -la"
 alias cat="bat -pp --theme ansi"
 alias vim="nvim"
 
-eval "$(zoxide init --cmd cd zsh)"
-
 . "$HOME/.cargo/env"
+
+eval "$(zoxide init --cmd cd zsh)"

@@ -12,6 +12,35 @@ return {
 
         require("luasnip.loaders.from_vscode").lazy_load()
 
+        local kind_icons = {
+            Text = " ",
+            Method = " ",
+            Function = " ",
+            Constructor = " ",
+            Field = " ",
+            Variable = " ",
+            Class = " ",
+            Interface = " ",
+            Module = " ",
+            Property = " ",
+            Unit = " ",
+            Value = " ",
+            Enum = " ",
+            Keyword = " ",
+            Snippet = " ",
+            Color = " ",
+            File = " ",
+            Reference = " ",
+            Folder = " ",
+            EnumMember = " ",
+            Constant = " ",
+            Struct = " ",
+            Event = " ",
+            Operator = " ",
+            TypeParameter = " ",
+            Version = " ",
+        }
+
         return {
             snippet = {
                 expand = function(args)
@@ -49,13 +78,10 @@ return {
                 { name = "buffer", keyword_length = 3 },
             }),
             formatting = {
-                format = function(entry, vim_item)
-                    vim_item.menu = ({
-                        buffer = "[Buffer]",
-                        nvim_lsp = "[LSP]",
-                        luasnip = "[LuaSnip]",
-                        path = "[Path]",
-                    })[entry.source.name]
+                fields = { "kind", "abbr", "menu" },
+                format = function(_, vim_item)
+                    vim_item.menu = "  (" .. vim_item.kind .. ")"
+                    vim_item.kind = kind_icons[vim_item.kind]
                     return vim_item
                 end
             },

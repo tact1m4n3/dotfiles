@@ -57,14 +57,16 @@ return {
         local lspconfig = require("lspconfig")
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-        local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
+        local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
         for type, icon in pairs(signs) do
             local hl = "DiagnosticSign" .. type
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
         vim.diagnostic.config({
-            virtual_text = true,
+            virtual_text = {
+                prefix = "●",
+            },
         })
 
         local capabilities = cmp_nvim_lsp.default_capabilities()

@@ -20,21 +20,6 @@ require("lazy").setup({
     },
     ui = {
         border = "single",
-        icons = {
-            cmd = "",
-            config = "",
-            event = "",
-            ft = "",
-            init = "",
-            keys = "",
-            plugin = "",
-            runtime = "",
-            require = "",
-            source = "",
-            start = "",
-            task = "",
-            lazy = "",
-        },
     },
     checker = {
         enabled = true,

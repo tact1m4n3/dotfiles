@@ -2,6 +2,7 @@ return {
     "stevearc/oil.nvim",
     config = function()
         require("oil").setup({
+            columns = {},
             use_default_keymaps = false,
             keymaps = {
                 ["<CR>"] = "actions.select",
