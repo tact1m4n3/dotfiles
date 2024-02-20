@@ -1,6 +1,5 @@
 return {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
     dependencies = {
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
@@ -47,8 +46,8 @@ return {
                 { name = "luasnip" },
                 { name = "path" },
             }, {
-                    { name = "buffer", keyword_length = 3 },
-                }),
+                { name = "buffer", keyword_length = 3 },
+            }),
             formatting = {
                 format = function(entry, vim_item)
                     vim_item.menu = ({

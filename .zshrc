@@ -1,5 +1,5 @@
 # TODO: maybe figure out another way to do this
-if [ "$(uname -s)" == "Darwin" ]; then
+if [[ "$(uname -s)" == "Darwin" ]]; then
     export PATH=/opt/homebrew/bin:$PATH
 fi
 
@@ -20,7 +20,7 @@ source $ZSH/oh-my-zsh.sh
 alias ll="ls -l"
 alias la="ls -la"
 
-alias cat="bat -pp"
+alias cat="bat -pp --theme ansi"
 alias vim="nvim"
 
 eval "$(zoxide init --cmd cd zsh)"

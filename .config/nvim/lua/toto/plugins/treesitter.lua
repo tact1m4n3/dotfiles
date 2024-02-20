@@ -1,7 +1,6 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     version = "*",
-    event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
@@ -13,6 +12,7 @@ return {
             },
             indent = {
                 enable = true,
+                disable = { "c", "rust" },
             },
             ensure_installed = {
                 "bash",

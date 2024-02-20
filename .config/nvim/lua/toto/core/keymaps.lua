@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<esc>", ":nohl<CR>")
+vim.keymap.set("n", "<C-c>", ":nohl<CR>")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -19,7 +19,3 @@ vim.keymap.set({ "n", "v" }, "<leader>P", [["+P]])
 
 vim.keymap.set("n", "<leader>sh", ":split<CR>")
 vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
-
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float)

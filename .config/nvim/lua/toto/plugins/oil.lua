@@ -1,13 +1,21 @@
 return {
     "stevearc/oil.nvim",
-    lazy = false,
-    keys = {
-        { "<leader>e", ":Oil<CR>" },
-    },
-    opts = {
-        view_options = {
-            show_hidden = true,
-            skip_confirm_for_simple_edits = true,
-        },
-    },
+    config = function()
+        require("oil").setup({
+            use_default_keymaps = false,
+            keymaps = {
+                ["<CR>"] = "actions.select",
+                ["q"] = "actions.close",
+                ["<C-f>"] = "actions.refresh",
+                ["-"] = "actions.parent",
+                ["_"] = "actions.open_cwd",
+            },
+            view_options = {
+                show_hidden = true,
+                skip_confirm_for_simple_edits = true,
+            },
+        })
+
+        vim.keymap.set("n", "<leader>e", ":Oil<CR>")
+    end,
 }

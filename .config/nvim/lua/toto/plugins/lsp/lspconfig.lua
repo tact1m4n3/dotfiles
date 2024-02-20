@@ -16,8 +16,11 @@ return {
             ["gr"] = { "n", function() require("trouble").toggle("lsp_references") end },
             ["K"] = { "n", vim.lsp.buf.hover },
             ["<C-h>"] = { "i", vim.lsp.buf.signature_help },
+            ["[d"] = { "n", vim.diagnostic.goto_prev },
+            ["]d"] = { "n", vim.diagnostic.goto_next },
             ["<leader>ca"] = { { "n", "v" }, vim.lsp.buf.code_action },
             ["<leader>cr"] = { "n", vim.lsp.buf.rename },
+            ["<leader>cd"] = { "n", vim.diagnostic.open_float },
             ["<leader>cf"] = { "n", vim.lsp.buf.format },
         }
 

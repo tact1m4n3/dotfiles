@@ -11,11 +11,6 @@ return {
         },
         "folke/trouble.nvim",
     },
-    keys = {
-        "<leader>ff",
-        "<leader>fg",
-        "<leader>sg",
-    },
     config = function()
         local telescope = require("telescope")
         local builtin = require("telescope.builtin")
