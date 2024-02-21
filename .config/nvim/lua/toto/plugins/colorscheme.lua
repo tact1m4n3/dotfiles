@@ -5,7 +5,6 @@ return {
     config = function()
         require("rose-pine").setup({
             styles = {
-                bold = false,
                 transparency = true,
             },
         })
