@@ -27,10 +27,19 @@ remove_dotfiles() {
     rm ~/.config/tmux
     rm ~/.config/nvim
 
-    rm ~/.config/hypr
-    rm ~/.config/waybar
-    rm ~/.config/mako
-    rm ~/.config/tofi
+    if [[ "$PLATFORM" == "Linux" ]]; then
+        rm ~/.config/hypr
+        rm ~/.config/waybar
+        rm ~/.config/mako
+        rm ~/.config/tofi
+    fi
 }
 
-install_dotfiles
+if [[ $1 == "install_dotfiles" ]]; then
+    install_dotfiles
+elif [[ $1 == "remove_dotfiles" ]]; then
+    remove_dotfiles
+else
+    echo "usage: $0 install_dotfiles|remove_dotfiles"
+    exit 1
+fi
