@@ -54,9 +54,9 @@
         "format": "{icon} {volume}%",
         "format-muted": " ",
         "on-click": "pavucontrol",
-        "on-click-right": "~/dotfiles/.config/hypr/scripts/volume.sh toggle",
-        "on-scroll-up": "~/dotfiles/.config/hypr/scripts/volume.sh inc",
-        "on-scroll-down": "~/dotfiles/.config/hypr/scripts/volume.sh dec",
+        "on-click-right": "~/dotfiles/hypr/scripts/volume.sh toggle",
+        "on-scroll-up": "~/dotfiles/hypr/scripts/volume.sh inc",
+        "on-scroll-down": "~/dotfiles/hypr/scripts/volume.sh dec",
         "scroll-step": 5,
         "format-icons": {
             "headphone": "",
@@ -74,9 +74,9 @@
         "format-source": " {volume}%",
         "format-source-muted": "",
         "on-click": "pavucontrol",
-        "on-click-right": "~/dotfiles/.config/hypr/scripts/volume.sh toggle-mic",
-        "on-scroll-up": "~/dotfiles/.config/hypr/scripts/volume.sh mic-inc",
-        "on-scroll-down": "~/dotfiles/.config/hypr/scripts/volume.sh mic-dec",
+        "on-click-right": "~/dotfiles/hypr/scripts/volume.sh toggle-mic",
+        "on-scroll-up": "~/dotfiles/hypr/scripts/volume.sh mic-inc",
+        "on-scroll-down": "~/dotfiles/hypr/scripts/volume.sh mic-dec",
         "scroll-step": 5
     },
 

@@ -17,7 +17,7 @@ elif [[ $1 == "picker" ]]; then
     fi
     wallpaper=$WALLPAPERS/"$wallpaper_name"
 elif [[ $1 == "random" ]]; then
-    wallpaper_name=$(ls -1 ~/wallpapers | shuf | head -1)
+    wallpaper_name=$(ls -1 $WALLPAPERS | shuf | head -1)
     wallpaper=$WALLPAPERS/"$wallpaper_name"
 else
     echo "usage: $0 init|picker|random"
@@ -27,7 +27,7 @@ fi
 echo "$wallpaper" > $CACHE_FILE
 
 swww img "$wallpaper" \
-    --transition-bezier 0.61,1,0.88,1 \
+    --transition-bezier=.33,1,.68,1 \
     --transition-duration=3 \
     --transition-fps=60 \
     --transition-type="wipe" \
