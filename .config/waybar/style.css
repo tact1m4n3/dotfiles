@@ -1,0 +1,33 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "MesloLGS Nerd Font";
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+    color: white;
+    border-bottom: 2px solid white;
+}
+
+#workspaces button.active {
+    color: #f9545d;
+    border-bottom: 2px solid #f9545d;
+}
+
+#mode {
+    background: #64727D;
+    border-bottom: 3px solid white;
+}
+
+#clock, #battery, #cpu, #memory, #disk, #network, #pulseaudio, #custom-spotify, #tray, #mode {
+    padding: 0 5px;
+}

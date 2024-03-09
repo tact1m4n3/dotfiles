@@ -5,6 +5,7 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         { "antosha417/nvim-lsp-file-operations", config = true },
         "folke/trouble.nvim",
+        { "j-hui/fidget.nvim", opts = { notification = { window = { winblend = 0 } } } },
         "simrat39/rust-tools.nvim",
     },
     config = function()
@@ -40,20 +41,6 @@ return {
             end
         end
 
-        local function format_on_save(client, bufnr)
-            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-            if client.supports_method("textDocument/formatting") then
-                vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    group = augroup,
-                    buffer = bufnr,
-                    callback = function()
-                        vim.lsp.buf.format()
-                    end,
-                })
-            end
-        end
-
         local lspconfig = require("lspconfig")
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -64,6 +51,7 @@ return {
         end
 
         vim.diagnostic.config({
+            float = { border = "rounded" },
             virtual_text = {
                 prefix = "●",
             },
@@ -75,7 +63,6 @@ return {
             capabilities = capabilities,
             on_attach = function(client, bufnr)
                 set_keymaps(bufnr, {})
-                format_on_save(client, bufnr)
             end,
             settings = {
                 Lua = {
@@ -96,7 +83,6 @@ return {
             capabilities = capabilities,
             on_attach = function(client, bufnr)
                 set_keymaps(bufnr, {})
-                format_on_save(client, bufnr)
             end,
         })
 
@@ -104,7 +90,6 @@ return {
             capabilities = capabilities,
             on_attach = function(client, bufnr)
                 set_keymaps(bufnr, {})
-                format_on_save(client, bufnr)
             end,
         })
 
@@ -112,7 +97,6 @@ return {
             capabilities = capabilities,
             on_attach = function(client, bufnr)
                 set_keymaps(bufnr, {})
-                format_on_save(client, bufnr)
             end,
         })
 
@@ -126,7 +110,6 @@ return {
                         ["<space>ca"] = { { "n", "v" }, rust_tools.code_action_group.code_action_group },
                     }
                     set_keymaps(bufnr, keys)
-                    format_on_save(client, bufnr)
                 end,
                 settings = {
                     ["rust-analyzer"] = {
@@ -150,7 +133,6 @@ return {
             capabilities = capabilities,
             on_attach = function(client, bufnr)
                 set_keymaps(bufnr, {})
-                format_on_save(client, bufnr)
             end,
         })
     end,

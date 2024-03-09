@@ -1,0 +1,86 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-center": [
+        "hyprland/window"
+    ],
+
+    "modules-right": [
+        "pulseaudio",
+        "pulseaudio#microphone",
+        "network",
+        "cpu",
+        "memory",
+        "disk",
+        "tray",
+        "clock"
+    ],
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false
+    },
+
+    "hyprland/window": {
+        "max-length": 50,
+    },
+
+    "cpu": {
+        "format": " {usage}%",
+        "on-click": "alacritty -o 'window.startup_mode=\"Fullscreen\"' -e btop"
+    },
+    "memory": {
+        "format": " {}%",
+        "on-click": "alacritty -o 'window.startup_mode=\"Fullscreen\"' -e btop"
+    },
+    "disk": {
+        "format": "󰋊 {}%",
+        "on-click": "alacritty -o 'window.startup_mode=\"Fullscreen\"' -e btop"
+    },
+
+    "network": {
+        "format-wifi": " {essid} {ipaddr}",
+        "format-ethernet": " {ifname} {ipaddr}",
+        "format-disconnected": " Disconnected",
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " ",
+        "on-click": "pavucontrol",
+        "on-click-right": "~/dotfiles/.config/hypr/scripts/volume.sh toggle",
+        "on-scroll-up": "~/dotfiles/.config/hypr/scripts/volume.sh inc",
+        "on-scroll-down": "~/dotfiles/.config/hypr/scripts/volume.sh dec",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        }
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "",
+        "on-click": "pavucontrol",
+        "on-click-right": "~/dotfiles/.config/hypr/scripts/volume.sh toggle-mic",
+        "on-scroll-up": "~/dotfiles/.config/hypr/scripts/volume.sh mic-inc",
+        "on-scroll-down": "~/dotfiles/.config/hypr/scripts/volume.sh mic-dec",
+        "scroll-step": 5
+    },
+
+    "clock": {
+        "format": " {:%H:%M}"
+    }
+}

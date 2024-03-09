@@ -4,11 +4,14 @@ live_config_reload = true
 TERM = "xterm-256color"
 
 [window]
-opacity = 0.9
+opacity = 0.5
 blur = true
-padding = { x = 4, y = 4 }
+padding = { x = 10, y = 10 }
 startup_mode = "Maximized"
 
 [font]
-size = 13
-normal = { family = "RobotoMono Nerd Font", style = "Regular" }
+size = 15
+normal = { family = "IosevkaTerm Nerd Font", style = "Regular" }
+
+[colors.primary]
+background = "#000000"

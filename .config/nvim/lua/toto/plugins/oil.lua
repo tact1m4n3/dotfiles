@@ -17,6 +17,6 @@ return {
             },
         })
 
-        vim.keymap.set("n", "<leader>e", ":Oil<CR>")
+        vim.keymap.set("n", "<C-e>", ":Oil<CR>")
     end,
 }

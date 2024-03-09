@@ -1,12 +1,6 @@
-# TODO: maybe figure out another way to do this
-if [[ "$(uname -s)" == "Darwin" ]]; then
-    export PATH=/opt/homebrew/bin:$PATH
-fi
-
 export ZSH="$HOME/.oh-my-zsh"
-export EDITOR=nvim
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME=""
 
 plugins=(
     git
@@ -17,12 +11,17 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-alias ll="ls -l"
-alias la="ls -la"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 alias cat="bat -pp --theme ansi"
 alias vim="nvim"
 
+export PATH=/usr/local/go/bin:$PATH
 . "$HOME/.cargo/env"
 
+# best ever theme
+export FZF_DEFAULT_OPTS="--color=bg+:-1,gutter:-1"
+
+eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
