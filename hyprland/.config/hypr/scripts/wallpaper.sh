@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WALLPAPERS=$HOME/dotfiles/wallpapers
+WALLPAPERS=$HOME/.wallpapers
 CACHE_FILE=$HOME/.cache/current_wallpaper
 
 if [[ $1 == "init" ]]; then

@@ -11,5 +11,3 @@ alias vim="nvim"
 
 eval "$(starship init bash)"
 eval "$(zoxide init --cmd cd bash)"
-
-pfetch
