@@ -12,11 +12,12 @@ return {
             },
             indent = {
                 enable = true,
-                disable = { "c", "rust" },
             },
             ensure_installed = {
                 "bash",
                 "bibtex",
+                "c",
+                "cpp",
                 "go",
                 "gomod",
                 "gowork",

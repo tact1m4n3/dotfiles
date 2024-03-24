@@ -7,7 +7,7 @@ Reboot
 " | tofi)
 
 if [[ "$option" == "Lock" ]]; then
-    sleep 0.3 && loginctl lock-session
+    sleep 0.5 && loginctl lock-session
 elif [[ "$option" == "Suspend" ]]; then
     systemctl suspend
 elif [[ "$option" == "Shutdown" ]]; then

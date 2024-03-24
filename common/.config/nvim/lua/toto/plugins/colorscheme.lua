@@ -1,20 +1,17 @@
 return {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "rose-pine/neovim",
+    name = "rose-pine",
     priority = 1000,
     config = function()
-        require("catppuccin").setup({
-            transparent_background = true,
-            highlight_overrides = {
-                all = function(colors)
-                    return {
-                        LineNr = { fg = colors.flamingo },
-                        Comment = { fg = colors.overlay2 },
-                    }
-                end
-            }
+        require("rose-pine").setup({
+            styles = {
+                transparency = true,
+            },
+            highlight_groups = {
+                TroubleNormal = { bg = "none" }
+            },
         })
 
-        vim.cmd [[colorscheme catppuccin]]
+        vim.cmd [[colorscheme rose-pine]]
     end,
 }
