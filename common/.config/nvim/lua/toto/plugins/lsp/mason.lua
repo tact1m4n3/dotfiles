@@ -14,6 +14,7 @@ return {
                 "clangd",
                 "gopls",
                 "lua_ls",
+                "pyright",
                 "rust_analyzer",
                 "taplo",
                 "texlab",

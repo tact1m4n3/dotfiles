@@ -91,6 +91,13 @@ return {
             },
         })
 
+        lspconfig["pyright"].setup({
+            capabilities = capabilities,
+            on_attach = function(_, bufnr)
+                set_keymaps(bufnr, {})
+            end,
+        })
+
         lspconfig["taplo"].setup({
             capabilities = capabilities,
             on_attach = function(_, bufnr)

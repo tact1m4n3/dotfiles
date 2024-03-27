@@ -26,6 +26,7 @@ return {
                 "luadoc",
                 "luap",
                 "markdown",
+                "python",
                 "rust",
                 "toml",
                 "vim",
