@@ -27,10 +27,8 @@ fi
 echo "$wallpaper" > $CACHE_FILE
 
 swww img "$wallpaper" \
-    --transition-bezier=.33,1,.68,1 \
-    --transition-duration=3 \
-    --transition-fps=60 \
-    --transition-type="wipe" \
-    --transition-angle=60
+    --transition-type="fade" \
+    --transition-duration=1 \
+    --transition-fps=60
 
 notify-send "Colors and wallpaper updated" "$wallpaper_name"
