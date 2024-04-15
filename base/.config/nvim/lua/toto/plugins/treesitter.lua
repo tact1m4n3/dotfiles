@@ -9,10 +9,11 @@ return {
         require("nvim-treesitter.configs").setup({
             highlight = {
                 enable = true,
+                disable = { "bibtex", "latex" },
             },
             indent = {
                 enable = true,
-                ignore = { "c", "cpp", "rust" },
+                disable = { "c", "cpp" },
             },
             ensure_installed = {
                 "bash",

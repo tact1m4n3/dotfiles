@@ -10,7 +10,7 @@ return {
     config = function()
         local telescope = require("telescope.builtin")
         local default_keys = {
-            ["gd"] = { "n", telescope.lsp_definitions },
+            ["gd"] = { "n", vim.lsp.buf.definition },
             ["gi"] = { "n", telescope.lsp_implementations },
             ["gD"] = { "n", telescope.lsp_type_definitions },
             ["gr"] = { "n", telescope.lsp_references },
