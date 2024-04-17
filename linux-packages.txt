@@ -1,6 +1,9 @@
 firefox
 alacritty
+less
+fzf
 tmux
+ripgrep
 neovim
 stow
 thunar
@@ -24,6 +27,7 @@ pamixer
 pavucontrol
 papirus-icon-theme
 udiskie
+noto-fonts-emoji
 ttf-iosevkaterm-nerd
 ttf-meslo-nerd
 btop

@@ -37,7 +37,7 @@ return {
             extensions = {
                 "fugitive",
                 "oil",
-                "trouble",
+                "quickfix",
             }
         }
     end,

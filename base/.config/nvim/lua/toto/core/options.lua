@@ -1,4 +1,3 @@
-vim.opt.mouse = "a"
 vim.opt.guicursor = ""
 
 vim.opt.number = true
@@ -29,5 +28,4 @@ vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.showmode = false
-vim.opt.fillchars = { eob = " "}
 vim.opt.iskeyword:append("-")

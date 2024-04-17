@@ -10,13 +10,10 @@ return {
                 require("telescope").load_extension("fzf")
             end,
         },
-        "folke/trouble.nvim",
     },
     config = function()
         local telescope = require("telescope")
         local builtin = require("telescope.builtin")
-
-        local trouble = require("trouble.providers.telescope")
 
         telescope.setup({
             defaults = {
@@ -31,10 +28,6 @@ return {
                     "%.pdf",
                     "%.mkv",
                     "%.mp4",
-                },
-                mappings = {
-                    i = { ["<C-t>"] = trouble.open_with_trouble },
-                    n = { ["<C-t>"] = trouble.open_with_trouble },
                 },
             },
             pickers = {
