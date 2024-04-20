@@ -1,6 +1,9 @@
 firefox
 alacritty
 less
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
 fzf
 tmux
 ripgrep
