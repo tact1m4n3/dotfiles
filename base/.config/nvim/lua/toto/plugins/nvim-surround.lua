@@ -1,5 +1,6 @@
 return {
-    "kylechui/nvim-surround",
-    event = { "BufReadPre", "BufNewFile" },
+    "windwp/nvim-autopairs",
+    event = "VeryLazy",
+    enabled = false,
     opts = {},
 }

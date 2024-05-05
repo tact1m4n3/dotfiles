@@ -12,7 +12,7 @@ return {
 
         vim.keymap.set("n", "<C-q>", function() harpoon:list():select(1) end)
         vim.keymap.set("n", "<C-t>", function() harpoon:list():select(2) end)
-        vim.keymap.set("n", "<C-n>", function() harpoon:list():select(2) end)
+        vim.keymap.set("n", "<C-n>", function() harpoon:list():select(3) end)
         vim.keymap.set("n", "<C-m>", function() harpoon:list():select(4) end)
     end,
 }

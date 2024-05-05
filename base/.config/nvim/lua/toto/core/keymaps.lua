@@ -17,9 +17,5 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["+d]])
 
-vim.keymap.set("n", "<leader>sh", ":split<CR>")
-vim.keymap.set("n", "<leader>sv", ":vsplit<CR>")
-
-vim.keymap.set("n", "<leader>q", ":copen<CR>")
-vim.keymap.set("n", "[q", ":cnext<CR>")
-vim.keymap.set("n", "]q", ":cNext<CR>")
+vim.keymap.set("n", "[q", ":cNext<CR>")
+vim.keymap.set("n", "]q", ":cnext<CR>")

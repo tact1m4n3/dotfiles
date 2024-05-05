@@ -7,6 +7,13 @@ return {
             { "antosha417/nvim-lsp-file-operations", config = true },
             { "j-hui/fidget.nvim", opts = { notification = { window = { winblend = 0 } } } },
             "simrat39/rust-tools.nvim",
+            {
+                "Saecki/crates.nvim",
+                event = { "BufRead Cargo.toml" },
+                config = function()
+                    require('crates').setup()
+                end,
+            },
         },
         config = function()
             local telescope = require("telescope.builtin")
@@ -100,10 +107,13 @@ return {
                 end,
             })
 
+            local crates = require("crates")
             lspconfig["taplo"].setup({
                 capabilities = capabilities,
                 on_attach = function(_, bufnr)
-                    set_keymaps(bufnr, {})
+                    set_keymaps(bufnr, {
+                        ["K"] = { "n", crates.show_popup },
+                    })
                 end,
             })
 
@@ -129,6 +139,7 @@ return {
                         ["rust-analyzer"] = {
                             check = {
                                 command = "clippy",
+                                allTargets = false,
                             },
                             cargo = {
                                 buildScripts = {
