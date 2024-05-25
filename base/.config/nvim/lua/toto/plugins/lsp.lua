@@ -58,11 +58,11 @@ return {
                 vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
             end
 
-            vim.diagnostic.config({
-                virtual_text = {
-                    prefix = "●",
-                },
-            })
+            -- vim.diagnostic.config({
+                -- virtual_text = {
+                    -- prefix = "●",
+                -- },
+            -- })
 
             local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -139,7 +139,7 @@ return {
                         ["rust-analyzer"] = {
                             check = {
                                 command = "clippy",
-                                allTargets = false,
+                                -- allTargets = false,
                             },
                             cargo = {
                                 buildScripts = {
@@ -160,6 +160,13 @@ return {
                     set_keymaps(bufnr, {})
                 end,
             })
+
+            lspconfig["zls"].setup({
+                capabilities = capabilities,
+                on_attach = function(_, bufnr)
+                    set_keymaps(bufnr, {})
+                end,
+            })
         end,
     }, {
         "williamboman/mason.nvim",
@@ -174,14 +181,10 @@ return {
 
             mason_lspconfig.setup({
                 ensure_installed = {
-                    "clangd",
                     "gopls",
                     "lua_ls",
-                    "pyright",
                     "rust_analyzer",
                     "taplo",
-                    "texlab",
-                    "wgsl_analyzer",
                 },
                 automatic_installation = true,
             })

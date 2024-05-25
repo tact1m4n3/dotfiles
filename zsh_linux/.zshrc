@@ -12,7 +12,7 @@ export VISUAL="nvim"
 
 export FZF_DEFAULT_OPTS="--color=bg+:-1,gutter:-1"
 
-alias cat="bat -pp --theme ansi"
+alias cat="bat -pp --theme gruvbox-dark"
 alias vim="nvim"
 
 eval "$(starship init zsh)"

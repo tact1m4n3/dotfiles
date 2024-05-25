@@ -12,6 +12,7 @@ stow
 thunar
 qimgv
 hyprland
+hyprpaper
 hypridle
 hyprlock
 xdg-desktop-portal-hyprland
@@ -22,7 +23,6 @@ cliphist
 wlsunset
 mako
 waybar
-swww
 tofi
 grim
 slurp

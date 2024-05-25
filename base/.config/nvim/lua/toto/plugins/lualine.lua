@@ -4,15 +4,9 @@ return {
     opts = function()
         local lazy_status = require("lazy.status")
 
-        local custom_theme = require("lualine.themes.onedark")
-        custom_theme.normal.b.bg = "none"
-        custom_theme.normal.c.bg = "none"
-        custom_theme.inactive.b.bg = "none"
-        custom_theme.inactive.c.bg = "none"
-
         return {
             options = {
-                theme = custom_theme,
+                theme = "gruvbox",
                 section_separators = { left = "", right = "" },
                 component_separators = { left = "", right = "" },
                 disabled_filetypes = { "undotree" },

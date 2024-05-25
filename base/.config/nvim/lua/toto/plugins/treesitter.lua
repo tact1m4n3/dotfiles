@@ -35,6 +35,7 @@ return {
                 "vim",
                 "vimdoc",
                 "wgsl",
+                "zig",
             },
             textobjects = {
                 move = {
