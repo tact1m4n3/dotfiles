@@ -181,10 +181,7 @@ return {
 
             mason_lspconfig.setup({
                 ensure_installed = {
-                    "gopls",
                     "lua_ls",
-                    "rust_analyzer",
-                    "taplo",
                 },
                 automatic_installation = true,
             })
