@@ -37,5 +37,4 @@ ttf-meslo-nerd
 btop
 bat
 pfetch
-zoxide
-starship
+oh-my-posh

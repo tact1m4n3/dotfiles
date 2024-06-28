@@ -1,4 +1,4 @@
 return {
-    "christoomey/vim-tmux-navigator",
-    "lervag/vimtex",
+  "christoomey/vim-tmux-navigator",
+  "lervag/vimtex",
 }

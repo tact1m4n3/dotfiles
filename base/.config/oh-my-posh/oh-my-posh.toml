@@ -1,0 +1,68 @@
+version = 2
+console_title_template = '{{if .Root}}(Admin){{end}} {{.PWD}}'
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+[[blocks.segments]]
+type = 'path'
+style = 'plain'
+foreground = 'lightBlue'
+template = '{{ .Path }} '
+
+[blocks.segments.properties]
+style = 'full'
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+
+[[blocks.segments]]
+type = 'git'
+style = 'plain'
+foreground = 'gray'
+template = '{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}<lightRed>*</>{{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} '
+
+[blocks.segments.properties]
+branch_ahead_icon = '<lightRed>⇡ </>'
+branch_behind_icon = '<lightRed>⇣ </>'
+branch_icon = ''
+fetch_stash_count = true
+fetch_status = true
+fetch_upstream_icon = true
+github_icon = ''
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+
+[[blocks.segments]]
+type = 'executiontime'
+style = 'plain'
+foreground = 'lightYellow'
+template = ' {{ .FormattedMs }} '
+
+[blocks.segments.properties]
+style = 'austin'
+
+[[blocks]]
+type = 'prompt'
+alignment = 'left'
+newline = true
+
+[[blocks.segments]]
+type = 'status'
+style = 'plain'
+foreground = 'yellow'
+foreground_templates = ['{{ if gt .Code 0 }}red{{ end }}']
+template = '❯ '
+
+[blocks.segments.properties]
+always_enabled = true
+
+[transient_prompt]
+foreground = 'yellow'
+foreground_templates = ['{{ if gt .Code 0 }}red{{ end }}']
+template = '❯ '

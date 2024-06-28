@@ -15,7 +15,7 @@ export FZF_DEFAULT_OPTS="--color=bg+:-1,gutter:-1"
 alias cat="bat -pp --theme gruvbox-dark"
 alias vim="nvim"
 
-eval "$(starship init zsh)"
+eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/oh-my-posh.toml)"
 
 if [[ "$(tty)" == *"pts"* ]]; then
     pfetch
