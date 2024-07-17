@@ -4,8 +4,16 @@ ZSH_THEME=""
 plugins=(git fzf zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
+# go
 export PATH=$HOME/go/bin:$PATH
+
+# rust
 . "$HOME/.cargo/env"
+
+# zvm
+export ZVM_INSTALL="$HOME/.zvm/self"
+export PATH="$PATH:$HOME/.zvm/bin"
+export PATH="$PATH:$ZVM_INSTALL/"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
