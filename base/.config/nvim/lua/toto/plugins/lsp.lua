@@ -18,7 +18,7 @@ return {
     config = function()
       local telescope = require("telescope.builtin")
       local default_keys = {
-        ["gd"] = { "n", vim.lsp.buf.definition },
+        ["gd"] = { "n", telescope.lsp_definitions },
         ["gi"] = { "n", telescope.lsp_implementations },
         ["gD"] = { "n", telescope.lsp_type_definitions },
         ["gr"] = { "n", telescope.lsp_references },
@@ -27,6 +27,7 @@ return {
         ["<leader>ca"] = { { "n", "v" }, vim.lsp.buf.code_action },
         ["<leader>cr"] = { "n", vim.lsp.buf.rename },
         ["<leader>cf"] = { "n", vim.lsp.buf.format },
+        ["<leader>csa"] = { "n", telescope.lsp_document_symbols },
         ["[d"] = { "n", vim.diagnostic.goto_prev },
         ["]d"] = { "n", vim.diagnostic.goto_next },
         ["<leader>cd"] = { "n", vim.diagnostic.open_float },
