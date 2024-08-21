@@ -1,6 +1,6 @@
 font = "MesloLGS Nerd Font"
 font-size = 16
-selection-color = #cf6527
+selection-color = #31ada9
 text-cursor-style = block
 prompt-text = ""
 placeholder-text = "Search..."
@@ -11,7 +11,7 @@ height = 290
 background-color = #000000bb
 outline-width = 0
 border-width = 2
-border-color = #826656
+border-color = #16b19d
 corner-radius = 5
 padding-top = 10
 padding-bottom = 10

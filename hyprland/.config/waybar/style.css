@@ -1,26 +1,29 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "MesloLGS Nerd Font";
+    font-family: "Noto Sans Regular", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
     font-size: 16px;
     min-height: 0;
 }
 
 window#waybar {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.2);
     color: white;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background: transparent;
+    padding: 0 9px;
     color: white;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid transparent;
 }
 
 #workspaces button.active {
-    color: #e8541a;
-    border-bottom: 2px solid #e8541a;
+    background: rgba(255, 255, 255, 0.12);
+    border-bottom: 2px solid white;
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.12);
 }
 
 #mode {
@@ -29,5 +32,5 @@ window#waybar {
 }
 
 #clock, #battery, #cpu, #memory, #disk, #network, #pulseaudio, #custom-spotify, #tray, #mode {
-    padding: 0 5px;
+    padding: 0 9px;
 }

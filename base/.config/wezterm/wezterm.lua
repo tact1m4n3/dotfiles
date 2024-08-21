@@ -2,7 +2,7 @@ local wezterm = require('wezterm')
 local config = {}
 
 config.font = wezterm.font('Fira Code')
-config.font_size = 22
+config.font_size = 16
 
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1500 }
 config.keys = {
@@ -81,7 +81,7 @@ for i = 1, 8 do
   })
 end
 
--- config.tab_bar_at_bottom = true
+config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_max_width = 12
@@ -117,6 +117,13 @@ config.colors = {
       fg_color = '#a0a0a0',
     },
   },
+}
+
+config.window_background_image = wezterm.config_dir .. "/background.jpg";
+config.window_background_image_hsb = {
+  brightness = 0.15,
+  hue = 1.0,
+  saturation = 1.0,
 }
 
 return config

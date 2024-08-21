@@ -27,7 +27,7 @@ return {
         ["<leader>ca"] = { { "n", "v" }, vim.lsp.buf.code_action },
         ["<leader>cr"] = { "n", vim.lsp.buf.rename },
         ["<leader>cf"] = { "n", vim.lsp.buf.format },
-        ["<leader>csa"] = { "n", telescope.lsp_document_symbols },
+        ["<leader>cs"] = { "n", telescope.lsp_document_symbols },
         ["[d"] = { "n", vim.diagnostic.goto_prev },
         ["]d"] = { "n", vim.diagnostic.goto_next },
         ["<leader>cd"] = { "n", vim.diagnostic.open_float },

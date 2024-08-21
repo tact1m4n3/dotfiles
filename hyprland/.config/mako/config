@@ -6,10 +6,10 @@ on-button-middle=none
 on-button-right=dismiss-all
 on-touch=dismiss
 
-font=MesloLGS Nerd Font 13
+font=Noto Sans 13
 width=350
 height=100
-margin=10
+margin=20
 padding=15
 border-size=2
 border-radius=5
@@ -24,11 +24,11 @@ default-timeout=5000
 ignore-timeout=0
 max-visible=5
 layer=overlay
-anchor=center
+anchor=top-right
 
 background-color=#000000bb
 text-color=#ffffff
-border-color=#826655
+border-color=#16b19d
 progress-color=over #89b4fa
 
 [urgency=low]
