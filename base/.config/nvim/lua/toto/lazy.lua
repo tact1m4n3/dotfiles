@@ -16,7 +16,7 @@ require("lazy").setup({
   { import = "toto.plugins.lsp" },
 }, {
   install = {
-    colorscheme = { "gruvbox" },
+    colorscheme = { "gruvbox-material" },
   },
   ui = {
     border = "single",

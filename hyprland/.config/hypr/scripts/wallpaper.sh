@@ -3,13 +3,19 @@
 WALLPAPERS=$HOME/.wallpapers
 CACHE_FILE=$HOME/.cache/current_wallpaper
 
+if [ ! -f $cache_file ] ;then
+    touch $CACHE_FILE
+    echo $WALLPAPERS/default.jpg > $CACHE_FILE
+fi
+prev_wallpaper=$(cat $CACHE_FILE)
+prev_wallpaper_name=$(echo "$wallpaper" | sed "s|$WALLPAPERS/||g")
+
 if [[ $1 == "init" ]]; then
-    if [ ! -f $cache_file ] ;then
-        touch $CACHE_FILE
-        echo $WALLPAPERS/default.jpg > $CACHE_FILE
-    fi
-    wallpaper=$(cat $CACHE_FILE)
-    wallpaper_name=$(echo "$wallpaper" | sed "s|$WALLPAPERS/||g")
+    wallpaper_name="$prev_wallpaper_name"
+    wallpaper="$prev_wallpaper"
+
+    hyprctl hyprpaper preload "$wallpaper" > /dev/null
+    hyprctl hyprpaper wallpaper ",$wallpaper" > /dev/null
 elif [[ $1 == "picker" ]]; then
     wallpaper_name=$(ls -1 $WALLPAPERS | tofi)
     if [[ ! "$wallpaper_name" ]]; then
@@ -26,9 +32,10 @@ fi
 
 echo "$wallpaper" > $CACHE_FILE
 
-swww img "$wallpaper" \
-    --transition-type="fade" \
-    --transition-duration=1 \
-    --transition-fps=60
+if [[ "$wallpaper" != "$prev_wallpaper" ]]; then
+    hyprctl hyprpaper preload "$wallpaper" > /dev/null
+    hyprctl hyprpaper wallpaper ",$wallpaper" > /dev/null
+    hyprctl hyprpaper unload "$prev_wallpaper" > /dev/null
+fi
 
 notify-send "Colors and wallpaper updated" "$wallpaper_name"

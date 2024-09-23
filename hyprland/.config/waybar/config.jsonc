@@ -26,12 +26,6 @@
         "disable-scroll": true,
         "all-outputs": false,
         "format": "{icon}"
-        // "format-icons": {
-        //     "1": "󰅩",
-        //     "2": "",
-        //     "3": "󰙯",
-        //     "4": ""
-        // }
     },
 
     "hyprland/window": {
@@ -39,18 +33,21 @@
     },
 
     "cpu": {
-        "format": "{usage}%  "
+        "format": "{usage}%  ",
+        "on-click": "alacritty -o 'window.startup_mode=\"Fullscreen\"' -e btop"
     },
     "memory": {
-        "format": "{}%  "
+        "format": "{}%  ",
+        "on-click": "alacritty -o 'window.startup_mode=\"Fullscreen\"' -e btop"
     },
     "disk": {
-        "format": "{}% 󰋊 "
+        "format": "{}% 󰋊 ",
+        "on-click": "alacritty -o 'window.startup_mode=\"Fullscreen\"' -e btop"
     },
 
     "network": {
         "format-wifi": "{essid}  ",
-        "format-ethernet": "{ifname}  ",
+        "format-ethernet": " ",
         "format-disconnected": "Disconnected  "
     },
 

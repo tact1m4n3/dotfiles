@@ -1,6 +1,7 @@
 # oh-my zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME=""
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666"
 plugins=(git fzf zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 

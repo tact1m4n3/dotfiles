@@ -1,7 +1,7 @@
 local wezterm = require('wezterm')
 local config = {}
 
-config.font = wezterm.font('Fira Code')
+config.font = wezterm.font('Noto Sans Mono')
 config.font_size = 16
 
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1500 }
@@ -15,6 +15,11 @@ config.keys = {
     key = 'x',
     mods = 'LEADER',
     action = wezterm.action.CloseCurrentPane { confirm = true },
+  },
+  {
+    key = 'm',
+    mods = 'LEADER',
+    action = wezterm.action.TogglePaneZoomState,
   },
   {
     key = '|',
@@ -119,11 +124,11 @@ config.colors = {
   },
 }
 
-config.window_background_image = wezterm.config_dir .. "/background.jpg";
-config.window_background_image_hsb = {
-  brightness = 0.15,
-  hue = 1.0,
-  saturation = 1.0,
-}
+-- config.window_background_image = wezterm.config_dir .. "/background.jpg";
+-- config.window_background_image_hsb = {
+--   brightness = 0.15,
+--   hue = 1.0,
+--   saturation = 1.0,
+-- }
 
 return config
