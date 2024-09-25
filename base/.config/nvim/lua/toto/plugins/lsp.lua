@@ -3,8 +3,6 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      { "antosha417/nvim-lsp-file-operations", config = true },
       {
         "j-hui/fidget.nvim",
         opts = {
@@ -15,6 +13,25 @@ return {
         },
       },
       {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        opts = {
+          handler_opts = {
+            border = "none",
+          },
+        },
+      },
+      {
+        'rust-lang/rust.vim',
+        ft = { "rust" },
+        config = function()
+          vim.g.rustfmt_autosave = 1
+          vim.g.rustfmt_options = "--edition 2021"
+          vim.g.rustfmt_emit_files = 1
+          vim.g.rustfmt_fail_silently = 0
+        end
+      },
+      {
         "Saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },
         config = function()
@@ -23,61 +40,9 @@ return {
       },
     },
     config = function()
-      local telescope = require("telescope.builtin")
-      local default_keys = {
-        ["gd"] = { "n", vim.lsp.buf.definition },
-        ["K"] = { "n", vim.lsp.buf.hover },
-        ["<C-s>"] = { "i", vim.lsp.buf.signature_help },
-        ["<leader>ca"] = { { "n", "v" }, vim.lsp.buf.code_action },
-        ["<leader>cr"] = { "n", vim.lsp.buf.rename },
-        ["<leader>cf"] = { "n", vim.lsp.buf.format },
-        ["<leader>cs"] = { "n", telescope.lsp_document_symbols },
-        ["[d"] = { "n", vim.diagnostic.goto_prev },
-        ["]d"] = { "n", vim.diagnostic.goto_next },
-        ["<leader>cd"] = { "n", vim.diagnostic.open_float },
-        ["<leader>cq"] = { "n", vim.diagnostic.setqflist },
-      }
-
-      local function set_keymaps(bufnr, keys)
-        local opts = { buffer = bufnr }
-
-        local final_keys = {}
-        for key, binding in pairs(default_keys) do
-          final_keys[key] = binding
-        end
-        for key, binding in pairs(keys) do
-          final_keys[key] = binding
-        end
-        for key, binding in pairs(final_keys) do
-          local mode, action = unpack(binding)
-          vim.keymap.set(mode, key, action, opts)
-        end
-      end
-
       local lspconfig = require("lspconfig")
-      local lspconfig_util = lspconfig.util
-      local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-      local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-      end
-
-      vim.diagnostic.config({
-        virtual_text = {
-          prefix = "●",
-        },
-      })
-      vim.lsp.inlay_hint.enable(true, { 0 })
-
-      local capabilities = cmp_nvim_lsp.default_capabilities()
 
       lspconfig.lua_ls.setup({
-        capabilities = capabilities,
-        on_attach = function(_, bufnr)
-          set_keymaps(bufnr, {})
-        end,
         settings = {
           Lua = {
             diagnostics = {
@@ -94,60 +59,75 @@ return {
       })
 
       lspconfig.rust_analyzer.setup({
-        capabilities = capabilities,
-        on_attach = function(_, bufnr)
-          set_keymaps(bufnr, {})
-        end,
-        root_dir = lspconfig_util.root_pattern("Cargo.toml"),
         settings = {
           ["rust-analyzer"] = {
             check = {
               command = "clippy",
             },
+            cargo = {
+              allFeatures = true,
+            },
+            imports = {
+              group = {
+                enable = false,
+              },
+            },
+            completion = {
+              -- callable = {
+              --   snippets = "add_parentheses",
+              -- },
+              postfix = {
+                enable = false,
+              },
+            },
           },
         },
       })
 
-      lspconfig["gopls"].setup({
-        capabilities = capabilities,
-        on_attach = function(_, bufnr)
-          set_keymaps(bufnr, {})
-        end,
+      lspconfig["gopls"].setup({})
+      lspconfig["clangd"].setup({})
+      lspconfig["pyright"].setup({})
+      lspconfig["texlab"].setup({})
+      lspconfig["wgsl_analyzer"].setup({})
+      lspconfig["zls"].setup({})
+
+      local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+      end
+
+      vim.diagnostic.config({
+        virtual_text = {
+          prefix = "●",
+        },
       })
 
-      lspconfig["clangd"].setup({
-        capabilities = capabilities,
-        on_attach = function(_, bufnr)
-          set_keymaps(bufnr, {})
-        end,
-      })
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+        callback = function(ev)
+          local telescope = require("telescope.builtin")
 
-      lspconfig["pyright"].setup({
-        capabilities = capabilities,
-        on_attach = function(_, bufnr)
-          set_keymaps(bufnr, {})
-        end,
-      })
+          local opts = { buffer = ev.buf }
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+          -- vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, opts)
+          vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+          vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
+          vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, opts)
+          vim.keymap.set("n", "<leader>cs", telescope.lsp_document_symbols, opts)
+          vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+          vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+          vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, opts)
+          vim.keymap.set("n", "<leader>cq", vim.diagnostic.setloclist, opts)
 
-      lspconfig["texlab"].setup({
-        capabilities = capabilities,
-        on_attach = function(_, bufnr)
-          set_keymaps(bufnr, {})
-        end,
-      })
-
-      lspconfig["wgsl_analyzer"].setup({
-        capabilities = capabilities,
-        on_attach = function(_, bufnr)
-          set_keymaps(bufnr, {})
-        end,
-      })
-
-      lspconfig["zls"].setup({
-        capabilities = capabilities,
-        on_attach = function(_, bufnr)
-          set_keymaps(bufnr, {})
-        end,
+          local client = vim.lsp.get_client_by_id(ev.data.client_id)
+          if client and client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(true, {
+              buffer = ev.buf,
+            })
+          end
+        end
       })
     end,
   },

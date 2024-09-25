@@ -1,21 +1,16 @@
 #!/bin/bash
 
 WALLPAPERS=$HOME/.wallpapers
-CACHE_FILE=$HOME/.cache/current_wallpaper
+CONFIG_FILE=$HOME/.config/hypr/hyprpaper.conf
 
-if [ ! -f $cache_file ] ;then
-    touch $CACHE_FILE
-    echo $WALLPAPERS/default.jpg > $CACHE_FILE
+if [ ! -f $CONFIG_FILE ] ;then
+    touch $CONFIG_FILE
+    echo "preload = $WALLPAPERS/default.jpg" > $CONFIG_FILE
+    echo "wallpaper = ,$WALLPAPERS/default.jpg" >> $CONFIG_FILE
 fi
-prev_wallpaper=$(cat $CACHE_FILE)
-prev_wallpaper_name=$(echo "$wallpaper" | sed "s|$WALLPAPERS/||g")
 
 if [[ $1 == "init" ]]; then
-    wallpaper_name="$prev_wallpaper_name"
-    wallpaper="$prev_wallpaper"
-
-    hyprctl hyprpaper preload "$wallpaper" > /dev/null
-    hyprctl hyprpaper wallpaper ",$wallpaper" > /dev/null
+    exit 0
 elif [[ $1 == "picker" ]]; then
     wallpaper_name=$(ls -1 $WALLPAPERS | tofi)
     if [[ ! "$wallpaper_name" ]]; then
@@ -30,12 +25,11 @@ else
     exit 1
 fi
 
-echo "$wallpaper" > $CACHE_FILE
+echo "preload = $wallpaper" > $CONFIG_FILE
+echo "wallpaper = ,$wallpaper" >> $CONFIG_FILE
 
-if [[ "$wallpaper" != "$prev_wallpaper" ]]; then
-    hyprctl hyprpaper preload "$wallpaper" > /dev/null
-    hyprctl hyprpaper wallpaper ",$wallpaper" > /dev/null
-    hyprctl hyprpaper unload "$prev_wallpaper" > /dev/null
-fi
+hyprctl hyprpaper unload all > /dev/null
+hyprctl hyprpaper preload "$wallpaper" > /dev/null
+hyprctl hyprpaper wallpaper ",$wallpaper" > /dev/null
 
 notify-send "Colors and wallpaper updated" "$wallpaper_name"
