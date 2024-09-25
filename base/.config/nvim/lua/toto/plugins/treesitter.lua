@@ -20,6 +20,7 @@ return {
         "bash",
         "bibtex",
         "c",
+        "comment",
         "cpp",
         "go",
         "gomod",

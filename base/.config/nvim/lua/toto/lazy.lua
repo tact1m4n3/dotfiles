@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   { import = "toto.plugins" },
-  { import = "toto.plugins.lsp" },
 }, {
   install = {
     colorscheme = { "gruvbox-material" },

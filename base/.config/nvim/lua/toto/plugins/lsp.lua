@@ -2,43 +2,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      {
-        "j-hui/fidget.nvim",
-        opts = {
-          notification = {
-            window = {
-              winblend = 0 }
-          },
-        },
-      },
-      {
-        "ray-x/lsp_signature.nvim",
-        event = "VeryLazy",
-        opts = {
-          handler_opts = {
-            border = "none",
-          },
-        },
-      },
-      {
-        'rust-lang/rust.vim',
-        ft = { "rust" },
-        config = function()
-          vim.g.rustfmt_autosave = 1
-          vim.g.rustfmt_options = "--edition 2021"
-          vim.g.rustfmt_emit_files = 1
-          vim.g.rustfmt_fail_silently = 0
-        end
-      },
-      {
-        "Saecki/crates.nvim",
-        event = { "BufRead Cargo.toml" },
-        config = function()
-          require('crates').setup()
-        end,
-      },
-    },
     config = function()
       local lspconfig = require("lspconfig")
 
@@ -61,9 +24,6 @@ return {
       lspconfig.rust_analyzer.setup({
         settings = {
           ["rust-analyzer"] = {
-            check = {
-              command = "clippy",
-            },
             cargo = {
               allFeatures = true,
             },
@@ -73,9 +33,6 @@ return {
               },
             },
             completion = {
-              -- callable = {
-              --   snippets = "add_parentheses",
-              -- },
               postfix = {
                 enable = false,
               },
@@ -85,10 +42,7 @@ return {
       })
 
       lspconfig["gopls"].setup({})
-      lspconfig["clangd"].setup({})
-      lspconfig["pyright"].setup({})
       lspconfig["texlab"].setup({})
-      lspconfig["wgsl_analyzer"].setup({})
       lspconfig["zls"].setup({})
 
       local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -104,7 +58,7 @@ return {
       })
 
       vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+        group = vim.api.nvim_create_augroup('user_lsp_config', {}),
         callback = function(ev)
           local telescope = require("telescope.builtin")
 
@@ -129,6 +83,41 @@ return {
           end
         end
       })
+    end,
+  },
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      notification = {
+        window = {
+          winblend = 0 }
+      },
+    },
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {
+      handler_opts = {
+        border = "none",
+      },
+    },
+  },
+  {
+    'rust-lang/rust.vim',
+    ft = { "rust" },
+    config = function()
+      vim.g.rustfmt_autosave = 1
+      vim.g.rustfmt_options = "--edition 2021"
+      vim.g.rustfmt_emit_files = 1
+      vim.g.rustfmt_fail_silently = 0
+    end
+  },
+  {
+    "Saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    config = function()
+      require('crates').setup()
     end,
   },
   {

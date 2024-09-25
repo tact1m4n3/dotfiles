@@ -3,7 +3,7 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = function()
     local lazy_status = require("lazy.status")
-
+    -- TODO: hello
     return {
       options = {
         theme = "gruvbox-material",

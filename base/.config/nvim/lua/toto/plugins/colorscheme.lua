@@ -8,6 +8,8 @@ return {
 
     vim.cmd.colorscheme("gruvbox-material")
 
-    vim.cmd.hi("LineNr ctermfg=239 guifg=#666655")
+    vim.cmd("hi LineNr ctermfg=239 guifg=#666655")
+    vim.cmd("hi! link Comment Label")
+    vim.cmd("hi Visual guibg=#454443")
   end,
 }
