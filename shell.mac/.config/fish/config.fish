@@ -3,6 +3,10 @@ end
 
 abbr -a vim nvim
 
+if command -v bat > /dev/null
+    abbr -a cat 'bat'
+end
+
 if command -v eza > /dev/null
     abbr -a l 'eza'
     abbr -a ls 'eza'
@@ -13,6 +17,10 @@ else
     abbr -a ll 'ls -l'
     abbr -a la 'ls -la'
 end
+
+fish_add_path '/opt/homebrew/bin'
+fish_add_path '~/go/bin'
+fish_add_path '~/.cargo/bin'
 
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
@@ -30,7 +38,7 @@ function fish_prompt
     set_color red
     echo -n '@'
     set_color blue
-    echo -n $hostname
+    echo -n (hostname -s)
     if [ $PWD != $HOME ]
         set_color brblack
         echo -n ':'
@@ -49,7 +57,6 @@ function fish_greeting
     echo -e " \\e[1mHello there! 👋\\e[0m"
     echo
     echo -e (uname -ro | awk '{print " \\\\e[1mOS: \\\\e[0;32m"$0"\\\\e[0m"}')
-    echo -e (uname -n | awk '{print " \\\\e[1mHostname: \\\\e[0;32m"$0"\\\\e[0m"}')
-    echo -e (uptime -p | sed 's/^up //' | awk '{print " \\\\e[1mUptime: \\\\e[0;32m"$0"\\\\e[0m"}')
+    echo -e (hostname -s | awk '{print " \\\\e[1mHostname: \\\\e[0;32m"$0"\\\\e[0m"}')
     echo
 end

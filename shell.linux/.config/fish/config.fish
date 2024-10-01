@@ -4,6 +4,10 @@ end
 abbr -a vim nvim
 
 if command -v eza > /dev/null
+    abbr -a cat 'bat'
+end
+
+if command -v eza > /dev/null
     abbr -a l 'eza'
     abbr -a ls 'eza'
     abbr -a ll 'eza -l'
