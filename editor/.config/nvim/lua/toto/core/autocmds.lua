@@ -52,11 +52,18 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd("Filetype", {
-  group = augroup("wrap_spell"),
-  pattern = { "bib", "gitcommit", "markdown", "tex", "text" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
+local text = augroup("text")
+-- vim.api.nvim_create_autocmd("Filetype", {
+--   group = augroup("wrap_spell"),
+--   pattern = { "bib", "gitcommit", "markdown", "tex", "text" },
+--   callback = function()
+--     vim.opt_local.wrap = true
+--     vim.opt_local.spell = true
+--   end,
+-- })
+
+vim.api.nvim_create_autocmd('Filetype', {
+      pattern = 'tex',
+      group = text,
+      command = 'setlocal wrap spell tw=80 colorcolumn=81',
 })
