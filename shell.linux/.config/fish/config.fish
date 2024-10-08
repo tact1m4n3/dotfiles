@@ -18,6 +18,9 @@ else
     abbr -a la 'ls -la'
 end
 
+fish_add_path -v '.zvm/self'
+fish_add_path -v '.zvm/bin'
+
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate ''

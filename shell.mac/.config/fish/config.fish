@@ -19,8 +19,10 @@ else
 end
 
 fish_add_path '/opt/homebrew/bin'
-fish_add_path '~/go/bin'
-fish_add_path '~/.cargo/bin'
+fish_add_path -v 'go/bin'
+fish_add_path -v '.cargo/bin'
+fish_add_path -v '.zvm/self'
+fish_add_path -v '.zvm/bin'
 
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
