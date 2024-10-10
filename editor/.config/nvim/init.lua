@@ -102,6 +102,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 })
 
 vim.api.nvim_create_autocmd('Filetype', {
+    group = my_group,
     pattern = 'rust',
     command = 'set colorcolumn=100',
 })
@@ -484,6 +485,10 @@ require("lazy").setup({
                     border = "none",
                 },
             },
+        },
+        {
+            'ziglang/zig.vim',
+            ft = { "zig" },
         },
         {
             'rust-lang/rust.vim',

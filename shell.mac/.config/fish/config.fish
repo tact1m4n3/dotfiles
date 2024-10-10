@@ -24,6 +24,15 @@ fish_add_path '.cargo/bin'
 fish_add_path '.zvm/self'
 fish_add_path '.zvm/bin'
 
+function d
+    while test $PWD != "/"
+        if test -d .git
+            break
+        end
+        cd ..
+    end
+end
+
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate ''
