@@ -20,6 +20,7 @@ end
 
 fish_add_path '.zvm/self'
 fish_add_path '.zvm/bin'
+fish_add_path '.cargo/bin'
 
 function d
     while test $PWD != "/"

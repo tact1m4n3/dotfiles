@@ -453,6 +453,7 @@ require("lazy").setup({
 
                         local opts = { buffer = ev.buf }
                         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+                        vim.keymap.set("n", "gr", telescope.lsp_references, opts)
                         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
                         vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
                         vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
@@ -489,6 +490,9 @@ require("lazy").setup({
         {
             'ziglang/zig.vim',
             ft = { "zig" },
+            config = function ()
+                vim.g.zig_fmt_autosave = 0
+            end
         },
         {
             'rust-lang/rust.vim',
