@@ -3,7 +3,7 @@ end
 
 abbr -a vim nvim
 
-if command -v eza > /dev/null
+if command -v bat > /dev/null
     abbr -a cat 'bat'
 end
 
