@@ -34,6 +34,12 @@ function d
     end
 end
 
+function run_launch_dev
+    launch-dev
+end
+
+bind \ct run_launch_dev
+
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate ''
