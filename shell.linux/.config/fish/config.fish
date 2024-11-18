@@ -21,6 +21,7 @@ end
 fish_add_path '.zvm/self'
 fish_add_path '.zvm/bin'
 fish_add_path '.cargo/bin'
+fish_add_path '.tools/bin'
 
 function d
     while test $PWD != "/"
@@ -30,6 +31,12 @@ function d
         cd ..
     end
 end
+
+function run_launch_dev
+    launch-dev
+end
+
+bind \ct run_launch_dev
 
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
