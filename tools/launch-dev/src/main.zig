@@ -1,6 +1,9 @@
 const std = @import("std");
 
-const MAX_FZF_OUTPUT_LEN = 100;
+const max_fzf_output_len = 100;
+const lookup_dirs = [_][]const u8{
+    "dev",
+};
 
 pub fn main() !void {
     var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
@@ -13,28 +16,6 @@ pub fn main() !void {
     const home_path = env_map.get("HOME") orelse return error.HomeVarNotFound;
     const inside_tmux = if (env_map.get("TMUX")) |_| true else false;
 
-    var projects = std.ArrayList([]const u8).init(allocator);
-    defer {
-        for (projects.items) |project| {
-            allocator.free(project);
-        }
-        projects.deinit();
-    }
-
-    {
-        var home_dir = try std.fs.openDirAbsolute(home_path, .{});
-        defer home_dir.close();
-
-        var dev_dir = try home_dir.openDir("dev", .{ .iterate = true });
-        defer dev_dir.close();
-
-        var iter = dev_dir.iterate();
-        while (try iter.next()) |entry| {
-            if (entry.kind != .directory) continue;
-            try projects.append(try dev_dir.realpathAlloc(allocator, entry.name));
-        }
-    }
-
     const fzf_exe = if (inside_tmux) "fzf-tmux" else "fzf";
     var fzf_proc = std.process.Child.init(&.{fzf_exe}, allocator);
     fzf_proc.stdin_behavior = .Pipe;
@@ -43,12 +24,31 @@ pub fn main() !void {
 
     try fzf_proc.spawn();
 
-    const fzf_input = fzf_proc.stdin.?.writer();
-    for (projects.items) |project| {
-        try fzf_input.print("{s}\n", .{project});
+    {
+        const fzf_stdin = fzf_proc.stdin.?.writer();
+
+        var home_dir = try std.fs.openDirAbsolute(home_path, .{});
+        defer home_dir.close();
+
+        for (lookup_dirs) |dir_name| {
+            var dir = try home_dir.openDir(dir_name, .{ .iterate = true });
+            defer dir.close();
+
+            var iter = dir.iterate();
+            while (try iter.next()) |entry| {
+                if (entry.kind != .directory and entry.kind != .sym_link) {
+                    continue;
+                }
+
+                const path = try dir.realpathAlloc(allocator, entry.name);
+                defer allocator.free(path);
+
+                try fzf_stdin.print("{s}\n", .{path});
+            }
+        }
     }
 
-    const project_path_raw = try fzf_proc.stdout.?.readToEndAlloc(allocator, MAX_FZF_OUTPUT_LEN);
+    const project_path_raw = try fzf_proc.stdout.?.readToEndAlloc(allocator, max_fzf_output_len);
     defer allocator.free(project_path_raw);
 
     const project_path = std.mem.trimRight(u8, project_path_raw, "\n");
