@@ -490,7 +490,7 @@ require("lazy").setup({
         {
             'ziglang/zig.vim',
             ft = { "zig" },
-            config = function ()
+            config = function()
                 vim.g.zig_fmt_autosave = 0
             end
         },
@@ -578,6 +578,116 @@ require("lazy").setup({
                     automatic_installation = true,
                 })
             end,
+        },
+        {
+            "mfussenegger/nvim-dap",
+            dependencies = {
+                "nvim-neotest/nvim-nio",
+                "rcarriga/nvim-dap-ui",
+            },
+            config = function()
+                local dap = require("dap")
+                local dapui = require("dapui")
+
+                dapui.setup({
+                    controls = {
+                        element = "repl",
+                        enabled = false,
+                    },
+                    layouts = { {
+                        elements = { {
+                            id = "scopes",
+                            size = 0.25,
+                        }, {
+                            id = "breakpoints",
+                            size = 0.25,
+                        }, {
+                            id = "stacks",
+                            size = 0.25,
+                        }, {
+                            id = "watches",
+                            size = 0.25,
+                        } },
+                        position = "left",
+                        size = 40,
+                    }, {
+                        elements = { {
+                            id = "console",
+                            size = 1.0,
+                        } },
+                        position = "bottom",
+                        size = 10,
+                    } },
+                    mappings = {
+                        edit = "e",
+                        expand = { "<CR>", "<2-LeftMouse>" },
+                        open = "o",
+                        remove = "x",
+                        repl = "r",
+                        toggle = "t",
+                    },
+                })
+
+                dap.adapters.codelldb = {
+                    type = "server",
+                    port = "${port}",
+                    executable = {
+                        command = "codelldb",
+                        args = { "--port", "${port}" },
+                    },
+                }
+
+                dap.configurations.zig = {
+                    {
+                        name = 'Launch',
+                        type = 'codelldb',
+                        request = 'launch',
+                        program = '${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}',
+                        cwd = '${workspaceFolder}',
+                        stopOnEntry = false,
+                        args = {},
+                    },
+                }
+
+                dap.configurations.rust = {
+                    {
+                        name = 'Launch',
+                        type = 'codelldb',
+                        request = 'launch',
+                        program = function()
+                            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+                        end,
+                        cwd = '${workspaceFolder}',
+                        stopOnEntry = false,
+                    },
+                }
+
+                vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
+
+                vim.keymap.set("n", "<space>?", function()
+                    dapui.eval(nil, { enter = true })
+                end)
+
+                vim.keymap.set("n", "<space>dc", dap.continue);
+                vim.keymap.set("n", "<space>dsi", dap.step_into);
+                vim.keymap.set("n", "<space>dso", dap.step_over);
+                vim.keymap.set("n", "<space>dse", dap.step_out);
+                vim.keymap.set("n", "<space>dsu", dap.step_back);
+                vim.keymap.set("n", "<space>dr", dap.restart);
+
+                dap.listeners.before.attach.dapui_config = function()
+                    dapui.open()
+                end
+                dap.listeners.before.launch.dapui_config = function()
+                    dapui.open()
+                end
+                dap.listeners.before.event_terminated.dapui_config = function()
+                    dapui.close()
+                end
+                dap.listeners.before.event_exited.dapui_config = function()
+                    dapui.close()
+                end
+            end
         },
     },
     install = {
