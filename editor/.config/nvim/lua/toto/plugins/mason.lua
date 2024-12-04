@@ -2,7 +2,7 @@ return {
     "williamboman/mason.nvim",
     dependencies = {
         "williamboman/mason-lspconfig.nvim",
-        -- "zapling/mason-conform.nvim",
+        "zapling/mason-conform.nvim",
         "jay-babu/mason-nvim-dap.nvim",
     },
     config = function()
@@ -17,7 +17,7 @@ return {
             automatic_installation = true,
         })
 
-        -- require("mason-conform").setup()
+        require("mason-conform").setup()
 
         require("mason-nvim-dap").setup({
             ensure_installed = {

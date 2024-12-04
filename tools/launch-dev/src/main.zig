@@ -1,9 +1,56 @@
 const std = @import("std");
 
 const max_fzf_output_len = 100;
+
 const lookup_dirs = [_][]const u8{
+    "dotfiles",
     "dev",
 };
+
+const project_idents = [_][]const u8{
+    ".git",
+    "Cargo.toml",
+    "build.zig",
+    "go.mod",
+    "Makefile",
+    "init.lua",
+};
+
+const MAX_DEPTH = 5;
+
+fn walk(allocator: std.mem.Allocator, dir: std.fs.Dir, writer: std.fs.File.Writer, depth: u32) !void {
+    if (depth > MAX_DEPTH) return;
+
+    var iter = dir.iterate();
+    child_iter: while (try iter.next()) |entry| {
+        for (project_idents) |ident| {
+            if (std.mem.eql(u8, entry.name, ident)) {
+                const path = try dir.realpathAlloc(allocator, ".");
+                defer allocator.free(path);
+
+                try writer.print("{s}\n", .{path});
+
+                break :child_iter;
+            }
+        }
+    }
+
+    iter.reset();
+    while (try iter.next()) |entry| {
+        if (entry.kind != .directory)
+            continue;
+
+        var child_dir = try dir.openDir(entry.name, .{ .iterate = true });
+        defer child_dir.close();
+
+        try walk(
+            allocator,
+            child_dir,
+            writer,
+            depth + 1,
+        );
+    }
+}
 
 pub fn main() !void {
     var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
@@ -16,8 +63,7 @@ pub fn main() !void {
     const home_path = env_map.get("HOME") orelse return error.HomeVarNotFound;
     const inside_tmux = if (env_map.get("TMUX")) |_| true else false;
 
-    const fzf_exe = if (inside_tmux) "fzf-tmux" else "fzf";
-    var fzf_proc = std.process.Child.init(&.{fzf_exe}, allocator);
+    var fzf_proc = std.process.Child.init(&.{"fzf"}, allocator);
     fzf_proc.stdin_behavior = .Pipe;
     fzf_proc.stdout_behavior = .Pipe;
     fzf_proc.stderr_behavior = .Pipe;
@@ -30,21 +76,11 @@ pub fn main() !void {
         var home_dir = try std.fs.openDirAbsolute(home_path, .{});
         defer home_dir.close();
 
-        for (lookup_dirs) |dir_name| {
-            var dir = try home_dir.openDir(dir_name, .{ .iterate = true });
-            defer dir.close();
+        for (lookup_dirs) |name| {
+            var child_dir = try home_dir.openDir(name, .{});
+            defer child_dir.close();
 
-            var iter = dir.iterate();
-            while (try iter.next()) |entry| {
-                if (entry.kind != .directory and entry.kind != .sym_link) {
-                    continue;
-                }
-
-                const path = try dir.realpathAlloc(allocator, entry.name);
-                defer allocator.free(path);
-
-                try fzf_stdin.print("{s}\n", .{path});
-            }
+            try walk(allocator, child_dir, fzf_stdin, 0);
         }
     }
 
