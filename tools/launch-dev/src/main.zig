@@ -73,11 +73,11 @@ pub fn main() !void {
     {
         const fzf_stdin = fzf_proc.stdin.?.writer();
 
-        var home_dir = try std.fs.openDirAbsolute(home_path, .{});
+        var home_dir = try std.fs.openDirAbsolute(home_path, .{ .iterate = true });
         defer home_dir.close();
 
         for (lookup_dirs) |name| {
-            var child_dir = try home_dir.openDir(name, .{});
+            var child_dir = try home_dir.openDir(name, .{ .iterate = true });
             defer child_dir.close();
 
             try walk(allocator, child_dir, fzf_stdin, 0);

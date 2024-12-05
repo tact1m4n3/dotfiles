@@ -52,6 +52,7 @@ return {
             -- })
 
             lspconfig["gopls"].setup({})
+            lspconfig["clangd"].setup({})
             lspconfig["zls"].setup({})
 
             vim.api.nvim_create_autocmd('LspAttach', {

@@ -13,6 +13,7 @@ return {
                 "lua_ls",
                 "gopls",
                 "rust_analyzer",
+                "clangd",
             },
             automatic_installation = true,
         })
