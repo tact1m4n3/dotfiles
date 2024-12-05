@@ -7,7 +7,3 @@ end, { silent = true, buffer = bufnr })
 vim.keymap.set("n", "K", function()
     vim.cmd.RustLsp({ 'hover', 'actions' })
 end, { silent = true, buffer = bufnr })
-
-vim.keymap.set("n", "<leader>ds", function()
-    vim.cmd.RustLsp('debug')
-end, { silent = true })

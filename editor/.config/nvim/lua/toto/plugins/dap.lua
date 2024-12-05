@@ -15,30 +15,6 @@ return {
                 element = "repl",
                 enabled = false,
             },
-            layouts = { {
-                elements = { {
-                    id = "scopes",
-                    size = 0.25,
-                }, {
-                    id = "breakpoints",
-                    size = 0.25,
-                }, {
-                    id = "stacks",
-                    size = 0.25,
-                }, {
-                    id = "watches",
-                    size = 0.25,
-                } },
-                position = "left",
-                size = 40,
-            }, {
-                elements = { {
-                    id = "console",
-                    size = 1.0,
-                } },
-                position = "bottom",
-                size = 10,
-            } },
             mappings = {
                 edit = "e",
                 expand = { "<CR>", "<2-LeftMouse>" },
@@ -49,7 +25,17 @@ return {
             },
         })
 
-        -- require("nvim-dap-virtual-text").setup()
+        require("nvim-dap-virtual-text").setup({
+            virt_text_pos = "eol",
+            commented = true,
+            display_callback = function(variable, _, _, _, _)
+                local text = variable.value
+                if text:len() > 80 then
+                    text = text:sub(1, 50) .. "..."
+                end
+                return text
+            end,
+        })
 
         require("dap-go").setup()
 
