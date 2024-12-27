@@ -20,24 +20,6 @@ require("lazy").setup({
     install = {
         colorscheme = { "gruvbox-material" },
     },
-    ui = {
-        border = "single",
-        icons = {
-            cmd = "⌘",
-            config = "🛠",
-            event = "📅",
-            ft = "📂",
-            init = "⚙",
-            keys = "🗝",
-            plugin = "🔌",
-            runtime = "💻",
-            require = "🌙",
-            source = "📄",
-            start = "🚀",
-            task = "📌",
-            lazy = "💤 ",
-        },
-    },
     checker = {
         enabled = true,
         notify = false,
