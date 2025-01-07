@@ -1,6 +1,6 @@
 font = "Fira Code"
 font-size = 17
-selection-color = #31ada9
+selection-color = #009988
 text-cursor = true
 text-cursor-style = block
 text-cursor-color = #bbbbbb
@@ -14,7 +14,7 @@ background-color = #000000bb
 text-color = #cccccc
 outline-width = 0
 border-width = 2
-border-color = #16b19d
+border-color = #009988
 corner-radius = 5
 padding-top = 10
 padding-bottom = 10

@@ -28,7 +28,7 @@ anchor=top-right
 
 background-color=#000000bb
 text-color=#dddddd
-border-color=#16b19d
+border-color=#009988
 progress-color=over #89b4fa
 
 [urgency=low]
