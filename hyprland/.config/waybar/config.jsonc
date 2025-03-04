@@ -34,15 +34,15 @@
 
     "cpu": {
         "format": "{usage}%  ",
-        "on-click": "ghostty --fullscreen=true --command=btop --window-padding-x=0 --window-padding-y=0"
+        "on-click": "ghostty --fullscreen=true --window-padding-x=0 --window-padding-y=0 -e btop"
     },
     "memory": {
         "format": "{}%  ",
-        "on-click": "ghostty --fullscreen=true --command=btop --window-padding-x=0 --window-padding-y=0"
+        "on-click": "ghostty --fullscreen=true --window-padding-x=0 --window-padding-y=0 -e btop"
     },
     "disk": {
         "format": "{}% 󰋊 ",
-        "on-click": "ghostty --fullscreen=true --command=btop --window-padding-x=0 --window-padding-y=0"
+        "on-click": "ghostty --fullscreen=true -e btop --window-padding-x=0 --window-padding-y=0 -e btop"
     },
 
     "network": {

@@ -8,3 +8,20 @@ window-padding-x = 5
 window-padding-y = 5
 shell-integration-features = no-cursor
 confirm-close-surface = false
+gtk-single-instance = true
+
+keybind = ctrl+a>r=reload_config
+
+keybind = ctrl+a>c=new_tab
+keybind = ctrl+a>n=next_tab
+keybind = ctrl+a>p=previous_tab
+
+keybind = ctrl+shift+d=scroll_page_down
+keybind = ctrl+shift+u=scroll_page_up
+
+keybind = ctrl+a>1=goto_tab:1
+keybind = ctrl+a>2=goto_tab:2
+keybind = ctrl+a>3=goto_tab:3
+keybind = ctrl+a>4=goto_tab:4
+keybind = ctrl+a>5=goto_tab:5
+keybind = ctrl+a>6=goto_tab:6

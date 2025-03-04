@@ -51,5 +51,11 @@ return {
             }
         end,
     },
-    "github/copilot.vim",
+    {
+        "github/copilot.vim",
+        config = function()
+            -- disable copilot at startup
+            vim.g.copilot_enabled = 0
+        end,
+    }
 }
