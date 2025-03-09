@@ -9,7 +9,7 @@ return {
                 zig = { lsp_format = "fallback" },
             },
             format_on_save = function(bufnr)
-                local only_for = { "go", "zig" }
+                local only_for = { "go" }
                 if not vim.tbl_contains(only_for, vim.bo[bufnr].filetype) then
                     return
                 end
