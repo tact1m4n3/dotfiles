@@ -42,7 +42,7 @@
     },
     "disk": {
         "format": "{}% 󰋊 ",
-        "on-click": "ghostty --fullscreen=true -e btop --window-padding-x=0 --window-padding-y=0 -e btop"
+        "on-click": "ghostty --fullscreen=true --window-padding-x=0 --window-padding-y=0 -e btop"
     },
 
     "network": {
