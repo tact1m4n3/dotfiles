@@ -10,10 +10,20 @@ window-height = 40
 shell-integration-features = no-cursor
 
 keybind = ctrl+a>r=reload_config
+
 keybind = ctrl+a>c=new_tab
 keybind = ctrl+a>n=next_tab
 keybind = ctrl+a>p=previous_tab
+
 keybind = ctrl+a>s=new_split:auto
+
+keybind = ctrl+a>1=goto_tab:1
+keybind = ctrl+a>2=goto_tab:2
+keybind = ctrl+a>3=goto_tab:3
+keybind = ctrl+a>4=goto_tab:4
+keybind = ctrl+a>5=goto_tab:5
+keybind = ctrl+a>6=goto_tab:6
+
 keybind = ctrl+a>k=goto_split:up
 keybind = ctrl+a>j=goto_split:down
 keybind = ctrl+a>l=goto_split:right
