@@ -19,7 +19,7 @@ else
 end
 
 fish_add_path '/opt/homebrew/bin'
-fish_add_path '/opt/homebrew/Cellar/zigup/2025.01.02/bin'
+fish_add_path '/opt/homebrew/Cellar/zigup/2025.04.20/bin'
 fish_add_path 'go/bin'
 fish_add_path '.cargo/bin'
 fish_add_path '.local/bin'
