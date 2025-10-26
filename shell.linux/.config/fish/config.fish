@@ -18,10 +18,10 @@ else
     abbr -a la 'ls -la'
 end
 
-fish_add_path '.zvm/self'
-fish_add_path '.zvm/bin'
 fish_add_path '.cargo/bin'
 fish_add_path '.tools/bin'
+fish_add_path '.zvm/self'
+fish_add_path '.zvm/bin'
 
 function d
     while test $PWD != "/"

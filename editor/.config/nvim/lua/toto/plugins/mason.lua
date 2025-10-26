@@ -3,7 +3,7 @@ return {
     dependencies = {
         "williamboman/mason-lspconfig.nvim",
         "zapling/mason-conform.nvim",
-        "jay-babu/mason-nvim-dap.nvim",
+        -- "jay-babu/mason-nvim-dap.nvim",
     },
     config = function()
         require("mason").setup()
@@ -20,12 +20,12 @@ return {
 
         require("mason-conform").setup()
 
-        require("mason-nvim-dap").setup({
-            ensure_installed = {
-                "delve",
-                "codelldb",
-            },
-            automatic_installation = true,
-        })
+        -- require("mason-nvim-dap").setup({
+        --     ensure_installed = {
+        --         "delve",
+        --         "codelldb",
+        --     },
+        --     automatic_installation = true,
+        -- })
     end,
 }

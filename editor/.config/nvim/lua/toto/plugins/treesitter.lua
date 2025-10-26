@@ -1,7 +1,7 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        -- version = "*",
+        version = "*",
         event = { "BufReadPre", "BufNewFile" },
         build = ":TSUpdate",
         dependencies = {
@@ -19,7 +19,7 @@ return {
                     "gomod",
                     "gowork",
                     "gotmpl",
-                    "latex",
+                    -- "latex",
                     "lua",
                     "luadoc",
                     "luap",
